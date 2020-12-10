@@ -9,7 +9,7 @@ import UIKit
 
 class RefeicoesTableViewController : UITableViewController {
     
-    let refeicoes = [Refeicao(nome: "Macarrão",felicidade: 5), Refeicao(nome: "Churros",felicidade: 4)]
+    var refeicoes = Array<Refeicao>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,5 +37,16 @@ class RefeicoesTableViewController : UITableViewController {
         cell.selectedBackgroundView = selectedCell
         
         return cell
+    }
+    
+    func adicionar(refeicao:Refeicao) {
+        refeicoes.append(refeicao)
+        tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? ViewController {
+            viewController.tableViewController = self
+        }
     }
 }

@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var tableViewController: RefeicoesTableViewController?
+    
     @IBOutlet var nomeTextField: UITextField?
     @IBOutlet var felicidadeTextField: UITextField?
     
@@ -20,7 +22,10 @@ class ViewController: UIViewController {
         let felicidade = Int(felicidadeText){
             
             let refeicao = Refeicao(nome: nome, felicidade: felicidade)
-            print("nome \(refeicao.nome), felicidade \(refeicao.felicidade)")
+            
+            tableViewController?.adicionar(refeicao: refeicao)
+            
+            navigationController?.popViewController(animated: true)
         }
     }
 }
