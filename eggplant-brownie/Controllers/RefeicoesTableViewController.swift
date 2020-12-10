@@ -29,11 +29,7 @@ class RefeicoesTableViewController : UITableViewController {
         
         let selectedCell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: nil)
         selectedCell.textLabel?.text = refeicao.nome
-        
-        //ToDo:Ajustar cores
-        selectedCell.textLabel?.textColor = UIColor.white
-        selectedCell.textLabel?.highlightedTextColor = UIColor.white
-        selectedCell.backgroundColor = UIColor.black
+        selectedCell.backgroundColor = UIColor.green
         cell.selectedBackgroundView = selectedCell
         
         return cell
