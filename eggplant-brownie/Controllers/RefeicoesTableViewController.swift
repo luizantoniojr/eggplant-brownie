@@ -41,7 +41,7 @@ class RefeicoesTableViewController : UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let viewController = segue.destination as? ViewController {
+        if let viewController = segue.destination as? RefeicaoViewController {
             viewController.tableViewController = self
         }
     }

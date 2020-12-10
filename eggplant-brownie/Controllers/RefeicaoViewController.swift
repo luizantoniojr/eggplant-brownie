@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class RefeicaoViewController: UIViewController {
 
     var tableViewController: RefeicoesTableViewController?
     
