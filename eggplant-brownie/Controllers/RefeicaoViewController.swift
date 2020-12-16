@@ -11,10 +11,13 @@ protocol AdicionarRefeicaoDelegate {
     func adicionar(_ refeicao:Refeicao)
 }
 
-class RefeicaoViewController: UIViewController, UITableViewDataSource {
+class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var delegate: AdicionarRefeicaoDelegate?
-    let itens = ["Farinha", "Açucar", "Sal", "Pimenta", "Chocolate"]
+    var itens: [Item] = [Item(nome: "Farinha", calorias: 1),
+                         Item(nome: "Açucar", calorias: 1),
+                         Item(nome: "Sal", calorias: 1)]
+    var itensSelecionados: [Item] = []
     
     @IBOutlet var nomeTextField: UITextField?
     @IBOutlet var felicidadeTextField: UITextField?
@@ -26,7 +29,8 @@ class RefeicaoViewController: UIViewController, UITableViewDataSource {
         let nome = nomeTextField?.text,
         let felicidadeText =  felicidadeTextField?.text,
         let felicidade = Int(felicidadeText) {
-            let refeicao = Refeicao(nome: nome, felicidade: felicidade)
+            let refeicao = Refeicao(nome, felicidade, itensSelecionados)
+            
             delegate?.adicionar(refeicao)
             
             navigationController?.popViewController(animated: true)
@@ -40,8 +44,25 @@ class RefeicaoViewController: UIViewController, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celula = UITableViewCell()
         let item = itens[indexPath.row]
-        celula.textLabel?.text = item
+        celula.textLabel?.text = item.nome
         
         return celula
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let item = itens[indexPath.row]
+        
+        if let celula = tableView.cellForRow(at: indexPath) {
+            if celula.accessoryType == .none {
+                celula.accessoryType = .checkmark
+                itensSelecionados.append(item)
+            } else {
+                celula.accessoryType = .none
+                if let position = itensSelecionados.firstIndex(of: item) {
+                    itensSelecionados.remove(at: position)
+                }
+            }
+        }
     }
 }
