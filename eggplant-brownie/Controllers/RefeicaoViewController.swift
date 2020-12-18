@@ -11,17 +11,30 @@ protocol AdicionarRefeicaoDelegate {
     func adicionar(_ refeicao:Refeicao)
 }
 
-class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AdicionarItemDelegate {
+    
     var delegate: AdicionarRefeicaoDelegate?
-    var itens: [Item] = [Item(nome: "Farinha", calorias: 1),
-                         Item(nome: "Açucar", calorias: 1),
-                         Item(nome: "Sal", calorias: 1)]
+    var itens: [Item] = []
     var itensSelecionados: [Item] = []
     
     @IBOutlet var nomeTextField: UITextField?
     @IBOutlet var felicidadeTextField: UITextField?
+    @IBOutlet weak var ItensTableView: UITableView?
     
+    override func viewDidLoad() {
+        let botaoAdicionar = UIBarButtonItem(title: "Adicionar", style: .plain, target: self, action: #selector(abriAdicionarItem))
+        navigationItem.rightBarButtonItem = botaoAdicionar
+    }
+
+    @objc func abriAdicionarItem() {
+        let adicionarItensViewController = AdicionarItensViewController(delegate: self)
+        navigationController?.pushViewController(adicionarItensViewController, animated: true)
+    }
+    
+    func adicionarItem(_ item: Item) {
+        itens.append(item)
+        ItensTableView?.reloadData()
+    }
     
     @IBAction func adicionar(_ sender: Any) {
         
