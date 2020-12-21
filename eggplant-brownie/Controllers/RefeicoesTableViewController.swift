@@ -32,7 +32,23 @@ class RefeicoesTableViewController : UITableViewController, AdicionarRefeicaoDel
         selectedCell.backgroundColor = UIColor.green
         cell.selectedBackgroundView = selectedCell
         
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(mostrarDetalhe))
+        cell.addGestureRecognizer(longPress)
+        
         return cell
+    }
+    
+    @objc func mostrarDetalhe(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            let celula = gesture.view as! UITableViewCell
+            if let indexPath = tableView.indexPath(for: celula) {
+                let refeicao = refeicoes[indexPath.row]
+                let alerta = UIAlertController(title: refeicao.nome, message: "Felicidade: \(refeicao.felicidade)", preferredStyle: .alert)
+                let botaoOk = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alerta.addAction(botaoOk)
+                present(alerta, animated: true, completion: nil)
+            }
+        }
     }
     
     func adicionar(_ refeicao:Refeicao) {
