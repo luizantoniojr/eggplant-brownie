@@ -32,13 +32,11 @@ class AdicionarItensViewController: UIViewController {
         if
             let nome = nomeTextField?.text,
             let caloriaText = caloriaTextField?.text,
-            let caloria = Double.init(caloriaText) {
-            
-            let item = Item(nome: nome, calorias: caloria)
-            
-            delegate?.adicionarItem(item);
-            
-            navigationController?.popViewController(animated: true)
+            let caloria = Double.init(caloriaText),
+            let delegate = delegate {
+                let item = Item(nome: nome, calorias: caloria)
+                delegate.adicionarItem(item)
+                navigationController?.popViewController(animated: true)
         }
     }
 }

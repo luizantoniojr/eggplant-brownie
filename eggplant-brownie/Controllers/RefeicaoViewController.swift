@@ -19,7 +19,7 @@ class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet var nomeTextField: UITextField?
     @IBOutlet var felicidadeTextField: UITextField?
-    @IBOutlet weak var ItensTableView: UITableView?
+    @IBOutlet weak var itensTableView: UITableView?
     
     override func viewDidLoad() {
         let botaoAdicionar = UIBarButtonItem(title: "Adicionar", style: .plain, target: self, action: #selector(abriAdicionarItem))
@@ -33,7 +33,14 @@ class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func adicionarItem(_ item: Item) {
         itens.append(item)
-        ItensTableView?.reloadData()
+        if let tableView = itensTableView {
+            tableView.reloadData()
+        } else {
+            let alerta = UIAlertController(title: "Ops!", message: "Não foi possível atualizar a tabela", preferredStyle: .alert)
+            let btnOk = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alerta.addAction(btnOk)
+            present(alerta, animated: true, completion: nil)
+        }
     }
     
     @IBAction func adicionar(_ sender: Any) {
