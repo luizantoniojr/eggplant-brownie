@@ -13,6 +13,7 @@
 		BF4187EA257D173700499689 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4187E8257D173700499689 /* Main.storyboard */; };
 		BF4187EC257D173900499689 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF4187EB257D173900499689 /* Assets.xcassets */; };
 		BF4187EF257D173900499689 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4187ED257D173900499689 /* LaunchScreen.storyboard */; };
+		BF4921252597EAF4006610C0 /* Alerta.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4921242597EAF4006610C0 /* Alerta.swift */; };
 		BF6E2E7B2580540000E35028 /* RefeicoesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6E2E7A2580540000E35028 /* RefeicoesTableViewController.swift */; };
 		BF9217AB258C108C00974BFB /* AdicionarItensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9217A9258C108C00974BFB /* AdicionarItensViewController.swift */; };
 		BF9217AC258C108C00974BFB /* AdicionarItensViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF9217AA258C108C00974BFB /* AdicionarItensViewController.xib */; };
@@ -29,6 +30,7 @@
 		BF4187EB257D173900499689 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF4187EE257D173900499689 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF4187F0257D173900499689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF4921242597EAF4006610C0 /* Alerta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerta.swift; sourceTree = "<group>"; };
 		BF6E2E7A2580540000E35028 /* RefeicoesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefeicoesTableViewController.swift; sourceTree = "<group>"; };
 		BF9217A9258C108C00974BFB /* AdicionarItensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdicionarItensViewController.swift; sourceTree = "<group>"; };
 		BF9217AA258C108C00974BFB /* AdicionarItensViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdicionarItensViewController.xib; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			children = (
 				BFCCC087257EF54D00322D04 /* Refeicao.swift */,
 				BFCCC08B257EF69F00322D04 /* Item.swift */,
+				BF4921242597EAF4006610C0 /* Alerta.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF4921252597EAF4006610C0 /* Alerta.swift in Sources */,
 				BFCCC08C257EF69F00322D04 /* Item.swift in Sources */,
 				BF4187E7257D173700499689 /* RefeicaoViewController.swift in Sources */,
 				BF9217AB258C108C00974BFB /* AdicionarItensViewController.swift in Sources */,

@@ -36,10 +36,7 @@ class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableVi
         if let tableView = itensTableView {
             tableView.reloadData()
         } else {
-            let alerta = UIAlertController(title: "Ops!", message: "Não foi possível atualizar a tabela", preferredStyle: .alert)
-            let btnOk = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alerta.addAction(btnOk)
-            present(alerta, animated: true, completion: nil)
+            Alerta(controller: self).exibir(title: "Ops!", message: "Não foi possível atualizar a tabela")
         }
     }
     
@@ -50,9 +47,7 @@ class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableVi
         let felicidadeText =  felicidadeTextField?.text,
         let felicidade = Int(felicidadeText) {
             let refeicao = Refeicao(nome, felicidade, itensSelecionados)
-            
             delegate?.adicionar(refeicao)
-            
             navigationController?.popViewController(animated: true)
         }
     }
