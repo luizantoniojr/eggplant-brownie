@@ -14,6 +14,19 @@ class RefeicoesTableViewController : UITableViewController, AdicionarRefeicaoDel
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.backgroundColor = UIColor.systemGreen
+        
+        let diretorios = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        if let diretorio = diretorios.first {
+            do {
+                let caminho = diretorio.appendingPathComponent("refeicao")
+                let dados = try Data(contentsOf: caminho)
+                guard let refeicoesSalvas = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(dados) as? [Refeicao] else { return }
+                self.refeicoes = refeicoesSalvas
+                tableView.reloadData()
+            } catch {
+                Alerta(controller: self).exibir(message: "Não foi possível ler as refeições")
+            }
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,8 +75,19 @@ class RefeicoesTableViewController : UITableViewController, AdicionarRefeicaoDel
     }
     
     func adicionar(_ refeicao:Refeicao) {
-        refeicoes.append(refeicao)
-        tableView.reloadData()
+        let diretorios = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        if let diretorio = diretorios.first {
+            do {
+                refeicoes.append(refeicao)
+                let caminho = diretorio.appendingPathComponent("refeicao")
+                let dados = try NSKeyedArchiver.archivedData(withRootObject: refeicoes, requiringSecureCoding: false)
+                try dados.write(to: caminho)
+                tableView.reloadData()
+            } catch {
+                refeicoes.removeLast()
+                Alerta(controller: self).exibir(message: "Não foi possível salvar a refeição")
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
