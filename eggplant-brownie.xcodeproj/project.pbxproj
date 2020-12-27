@@ -14,6 +14,9 @@
 		BF4187EC257D173900499689 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF4187EB257D173900499689 /* Assets.xcassets */; };
 		BF4187EF257D173900499689 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4187ED257D173900499689 /* LaunchScreen.storyboard */; };
 		BF4921252597EAF4006610C0 /* Alerta.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4921242597EAF4006610C0 /* Alerta.swift */; };
+		BF49212A25990848006610C0 /* RefeicaoDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF49212925990848006610C0 /* RefeicaoDao.swift */; };
+		BF49212D2599138B006610C0 /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF49212C2599138A006610C0 /* BaseDao.swift */; };
+		BF49213025991AA3006610C0 /* ItemDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF49212F25991AA3006610C0 /* ItemDao.swift */; };
 		BF6E2E7B2580540000E35028 /* RefeicoesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6E2E7A2580540000E35028 /* RefeicoesTableViewController.swift */; };
 		BF9217AB258C108C00974BFB /* AdicionarItensViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF9217A9258C108C00974BFB /* AdicionarItensViewController.swift */; };
 		BF9217AC258C108C00974BFB /* AdicionarItensViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF9217AA258C108C00974BFB /* AdicionarItensViewController.xib */; };
@@ -31,6 +34,9 @@
 		BF4187EE257D173900499689 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF4187F0257D173900499689 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF4921242597EAF4006610C0 /* Alerta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerta.swift; sourceTree = "<group>"; };
+		BF49212925990848006610C0 /* RefeicaoDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefeicaoDao.swift; sourceTree = "<group>"; };
+		BF49212C2599138A006610C0 /* BaseDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDao.swift; sourceTree = "<group>"; };
+		BF49212F25991AA3006610C0 /* ItemDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDao.swift; sourceTree = "<group>"; };
 		BF6E2E7A2580540000E35028 /* RefeicoesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefeicoesTableViewController.swift; sourceTree = "<group>"; };
 		BF9217A9258C108C00974BFB /* AdicionarItensViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdicionarItensViewController.swift; sourceTree = "<group>"; };
 		BF9217AA258C108C00974BFB /* AdicionarItensViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdicionarItensViewController.xib; sourceTree = "<group>"; };
@@ -68,6 +74,7 @@
 		BF4187E1257D173700499689 /* eggplant-brownie */ = {
 			isa = PBXGroup;
 			children = (
+				BF4921282599082B006610C0 /* Data */,
 				BFCCC08F257EF77E00322D04 /* Models */,
 				BFCCC092257EF79A00322D04 /* Views */,
 				BFCCC090257EF78B00322D04 /* Controllers */,
@@ -77,6 +84,16 @@
 				BF4187F0257D173900499689 /* Info.plist */,
 			);
 			path = "eggplant-brownie";
+			sourceTree = "<group>";
+		};
+		BF4921282599082B006610C0 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				BF49212925990848006610C0 /* RefeicaoDao.swift */,
+				BF49212C2599138A006610C0 /* BaseDao.swift */,
+				BF49212F25991AA3006610C0 /* ItemDao.swift */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		BFCCC08F257EF77E00322D04 /* Models */ = {
@@ -183,6 +200,9 @@
 				BF4921252597EAF4006610C0 /* Alerta.swift in Sources */,
 				BFCCC08C257EF69F00322D04 /* Item.swift in Sources */,
 				BF4187E7257D173700499689 /* RefeicaoViewController.swift in Sources */,
+				BF49212D2599138B006610C0 /* BaseDao.swift in Sources */,
+				BF49213025991AA3006610C0 /* ItemDao.swift in Sources */,
+				BF49212A25990848006610C0 /* RefeicaoDao.swift in Sources */,
 				BF9217AB258C108C00974BFB /* AdicionarItensViewController.swift in Sources */,
 				BF4187E3257D173700499689 /* AppDelegate.swift in Sources */,
 				BF6E2E7B2580540000E35028 /* RefeicoesTableViewController.swift in Sources */,

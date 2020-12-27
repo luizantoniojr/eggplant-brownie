@@ -16,6 +16,7 @@ class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableVi
     var delegate: AdicionarRefeicaoDelegate?
     var itens: [Item] = []
     var itensSelecionados: [Item] = []
+    let itemDao = ItemDao()
     
     @IBOutlet var nomeTextField: UITextField?
     @IBOutlet var felicidadeTextField: UITextField?
@@ -24,6 +25,17 @@ class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         let botaoAdicionar = UIBarButtonItem(title: "Adicionar", style: .plain, target: self, action: #selector(abriAdicionarItem))
         navigationItem.rightBarButtonItem = botaoAdicionar
+        
+        carregarItens()
+    }
+    
+    private func carregarItens() {
+        do {
+            itens = try itemDao.Ler()
+            reloadData()
+        } catch {
+            Alerta(controller: self).exibir(message: "Não foi possível ler os itens")
+        }
     }
 
     @objc func abriAdicionarItem() {
@@ -32,7 +44,17 @@ class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func adicionarItem(_ item: Item) {
-        itens.append(item)
+        do {
+            itens.append(item)
+            try itemDao.Salvar(itens)
+            reloadData()
+        } catch {
+            itens.removeLast()
+            Alerta(controller: self).exibir(message: "Não foi possível salvar os itens")
+        }
+    }
+    
+    private func reloadData() {
         if let tableView = itensTableView {
             tableView.reloadData()
         } else {

@@ -10,22 +10,20 @@ import UIKit
 class RefeicoesTableViewController : UITableViewController, AdicionarRefeicaoDelegate {
     
     var refeicoes = Array<Refeicao>()
+    let refeicaoDao = RefeicaoDao()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.backgroundColor = UIColor.systemGreen
-        
-        let diretorios = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        if let diretorio = diretorios.first {
-            do {
-                let caminho = diretorio.appendingPathComponent("refeicao")
-                let dados = try Data(contentsOf: caminho)
-                guard let refeicoesSalvas = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(dados) as? [Refeicao] else { return }
-                self.refeicoes = refeicoesSalvas
-                tableView.reloadData()
-            } catch {
-                Alerta(controller: self).exibir(message: "Não foi possível ler as refeições")
-            }
+        carregarRefeicoes()
+    }
+    
+    private func carregarRefeicoes() {
+        do {
+            refeicoes = try refeicaoDao.Ler()
+            tableView.reloadData()
+        } catch {
+            Alerta(controller: self).exibir(message: "Não foi possível ler as refeições")
         }
     }
     
@@ -75,24 +73,18 @@ class RefeicoesTableViewController : UITableViewController, AdicionarRefeicaoDel
     }
     
     func adicionar(_ refeicao:Refeicao) {
-        let diretorios = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        if let diretorio = diretorios.first {
-            do {
-                refeicoes.append(refeicao)
-                let caminho = diretorio.appendingPathComponent("refeicao")
-                let dados = try NSKeyedArchiver.archivedData(withRootObject: refeicoes, requiringSecureCoding: false)
-                try dados.write(to: caminho)
-                tableView.reloadData()
-            } catch {
-                refeicoes.removeLast()
-                Alerta(controller: self).exibir(message: "Não foi possível salvar a refeição")
-            }
+        do {
+            refeicoes.append(refeicao)
+            try refeicaoDao.Salvar(refeicoes)
+            tableView.reloadData()
+        } catch {
+            refeicoes.removeLast()
+            Alerta(controller: self).exibir(message: "Não foi possível salvar a refeição")
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if
-        segue.identifier == "adicionar",
+        if segue.identifier == "adicionar",
         let viewController = segue.destination as? RefeicaoViewController {
                 viewController.delegate = self
             }
