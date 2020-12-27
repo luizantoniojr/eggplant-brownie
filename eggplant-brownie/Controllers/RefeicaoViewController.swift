@@ -36,19 +36,26 @@ class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableVi
         if let tableView = itensTableView {
             tableView.reloadData()
         } else {
-            Alerta(controller: self).exibir(title: "Ops!", message: "Não foi possível atualizar a tabela")
+            Alerta(controller: self).exibir(message: "Não foi possível atualizar a tabela")
         }
     }
     
     @IBAction func adicionar(_ sender: Any) {
-        
+        if let refeicao = obterReficaoDoFormulario() {
+            delegate?.adicionar(refeicao)
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func obterReficaoDoFormulario() -> Refeicao? {
         if
         let nome = nomeTextField?.text,
         let felicidadeText =  felicidadeTextField?.text,
         let felicidade = Int(felicidadeText) {
-            let refeicao = Refeicao(nome, felicidade, itensSelecionados)
-            delegate?.adicionar(refeicao)
-            navigationController?.popViewController(animated: true)
+            return Refeicao(nome, felicidade, itensSelecionados)
+        } else {
+            Alerta(controller: self).exibir(message: "Erro ao ler campos do formulário")
+            return nil
         }
     }
     

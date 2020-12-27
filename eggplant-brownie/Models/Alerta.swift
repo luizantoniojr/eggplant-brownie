@@ -16,7 +16,7 @@ class Alerta {
         self.viewController = controller
     }
     
-    func exibir(title: String, message: String) {
+    func exibir(title: String = "Atenção", message: String) {
         let alerta = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let btnOk = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alerta.addAction(btnOk)
