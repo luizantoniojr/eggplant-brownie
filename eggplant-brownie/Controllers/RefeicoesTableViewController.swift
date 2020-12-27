@@ -42,10 +42,23 @@ class RefeicoesTableViewController : UITableViewController, AdicionarRefeicaoDel
         if gesture.state == .began {
             let celula = gesture.view as! UITableViewCell
             if let indexPath = tableView.indexPath(for: celula) {
-                let refeicao = refeicoes[indexPath.row]
-                Alerta(controller: self).exibir(title: refeicao.nome, message: refeicao.obterDetalhes())
+                let refeicao  = refeicoes[indexPath.row]
+                
+                let acoes = obterAcoesDoDetalhe { (alert) in
+                    self.refeicoes.remove(at: indexPath.row)
+                    self.tableView.reloadData()
+                }
+                
+                Alerta(controller: self).exibir(title: refeicao.nome, message: refeicao.obterDetalhes(), actions: acoes)
             }
         }
+    }
+    
+    func obterAcoesDoDetalhe (removerHandler: @escaping (UIAlertAction) -> Void) -> [UIAlertAction] {
+        let acaoRemover =  UIAlertAction(title: "Remover", style: .destructive, handler: removerHandler)
+        let acaoCancelar = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        
+        return [acaoCancelar, acaoRemover]
     }
     
     func adicionar(_ refeicao:Refeicao) {
