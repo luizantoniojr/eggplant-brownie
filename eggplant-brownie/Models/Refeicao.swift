@@ -10,10 +10,10 @@ import UIKit
 class Refeicao: NSObject, NSCoding {
     
     let nome: String
-    let felicidade: Int
+    let felicidade: Float
     let itens: [Item]
     
-    init(_ nome: String, _ felicidade: Int, _ itens: [Item] = []) {
+    init(_ nome: String, _ felicidade: Float, _ itens: [Item] = []) {
         self.nome = nome
         self.felicidade = felicidade
         self.itens = itens
@@ -30,7 +30,7 @@ class Refeicao: NSObject, NSCoding {
     }
     
     func obterDetalhes() -> String {
-        var detalhes = "Felicidade \(self.felicidade)"
+        var detalhes = "Felicidade \(Int(self.felicidade))"
         for item in self.itens {
             detalhes += ", \(item.nome) - calorias: \(item.calorias)"
         }
@@ -45,7 +45,7 @@ class Refeicao: NSObject, NSCoding {
     
     required init?(coder: NSCoder) {
         nome = coder.decodeObject(forKey: "nome") as! String
-        felicidade = coder.decodeInteger(forKey: "felicidade")
+        felicidade = coder.decodeFloat(forKey: "felicidade")
         itens = coder.decodeObject(forKey: "itens") as! [Item]
     }
 }

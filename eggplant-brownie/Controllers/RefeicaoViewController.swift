@@ -19,12 +19,14 @@ class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableVi
     let itemDao = ItemDao()
     
     @IBOutlet var nomeTextField: UITextField?
-    @IBOutlet var felicidadeTextField: UITextField?
+    @IBOutlet weak var felicidadeSlider: UISlider?
     @IBOutlet weak var itensTableView: UITableView?
     
     override func viewDidLoad() {
         let botaoAdicionar = UIBarButtonItem(title: "Adicionar", style: .plain, target: self, action: #selector(abriAdicionarItem))
         navigationItem.rightBarButtonItem = botaoAdicionar
+        
+        felicidadeSlider?.setValue(3, animated: true);
         
         carregarItens()
     }
@@ -72,8 +74,7 @@ class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableVi
     func obterReficaoDoFormulario() -> Refeicao? {
         if
         let nome = nomeTextField?.text,
-        let felicidadeText =  felicidadeTextField?.text,
-        let felicidade = Int(felicidadeText) {
+        let felicidade = felicidadeSlider?.value {
             return Refeicao(nome, felicidade, itensSelecionados)
         } else {
             Alerta(controller: self).exibir(message: "Erro ao ler campos do formulário")

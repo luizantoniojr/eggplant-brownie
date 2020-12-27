@@ -29,12 +29,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1 - Triste e 5 - Feliz" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C2f-9L-bg4">
-                                <rect key="frame" x="56" y="327" width="302" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="eggplant" translatesAutoresizingMaskIntoConstraints="NO" id="P0k-lc-a73">
                                 <rect key="frame" x="124" y="131" width="166" height="67"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -74,13 +68,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="1" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="NDu-3L-72O">
+                                <rect key="frame" x="54" y="331" width="306" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="RjW-XV-aCW"/>
                     <connections>
-                        <outlet property="felicidadeTextField" destination="C2f-9L-bg4" id="eql-99-NMc"/>
+                        <outlet property="felicidadeSlider" destination="NDu-3L-72O" id="yD1-Ve-X0e"/>
                         <outlet property="itensTableView" destination="p05-Za-6BR" id="maS-QM-b8m"/>
                         <outlet property="nomeTextField" destination="9Yj-tW-7CG" id="7Cw-Q7-Zvo"/>
                     </connections>
