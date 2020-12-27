@@ -20,7 +20,7 @@ class RefeicoesTableViewController : UITableViewController, AdicionarRefeicaoDel
     
     private func carregarRefeicoes() {
         do {
-            refeicoes = try refeicaoDao.Ler()
+            refeicoes = try refeicaoDao.ler()
             tableView.reloadData()
         } catch {
             Alerta(controller: self).exibir(message: "Não foi possível ler as refeições")
@@ -56,8 +56,13 @@ class RefeicoesTableViewController : UITableViewController, AdicionarRefeicaoDel
                 let refeicao  = refeicoes[indexPath.row]
                 
                 let acoes = obterAcoesDoDetalhe { (alert) in
-                    self.refeicoes.remove(at: indexPath.row)
-                    self.tableView.reloadData()
+                    do {
+                        self.refeicoes.remove(at: indexPath.row)
+                        try self.refeicaoDao.remover(at: indexPath.row)
+                        self.tableView.reloadData()
+                    } catch {
+                        Alerta(controller: self).exibir(message: "Não foi possível remover a refeição")
+                    }
                 }
                 
                 Alerta(controller: self).exibir(title: refeicao.nome, message: refeicao.obterDetalhes(), actions: acoes)
@@ -75,7 +80,7 @@ class RefeicoesTableViewController : UITableViewController, AdicionarRefeicaoDel
     func adicionar(_ refeicao:Refeicao) {
         do {
             refeicoes.append(refeicao)
-            try refeicaoDao.Salvar(refeicoes)
+            try refeicaoDao.salvar(refeicoes)
             tableView.reloadData()
         } catch {
             refeicoes.removeLast()

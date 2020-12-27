@@ -11,11 +11,11 @@ class ItemDao {
     
     let dao = BaseDao(fileName: String(describing: Item.self))
     
-    func Salvar(_ itens: [Item]) throws {
-        try dao.Salvar(lista: itens)
+    func salvar(_ itens: [Item]) throws {
+        try dao.salvar(itens)
     }
     
-    func Ler() throws -> [Item] {
-        return try dao.Ler() as! [Item];
+    func ler() throws -> [Item] {
+        return try dao.ler() as! [Item];
     }
 }

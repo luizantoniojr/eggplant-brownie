@@ -15,14 +15,14 @@ class BaseDao {
         self.fileName =  fileName
     }
     
-    func Salvar(lista: [Any]) throws {
+    func salvar(_ lista: [Any]) throws {
         if let caminho = obterCaminho() {
             let dados = try NSKeyedArchiver.archivedData(withRootObject: lista, requiringSecureCoding: false)
             try dados.write(to: caminho)
         }
     }
     
-    func Ler() throws -> [Any] {
+    func ler() throws -> [Any] {
         if let caminho = obterCaminho() {
             let dados = try Data(contentsOf: caminho)
             if let lista = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(dados) as? [Any] {
@@ -30,6 +30,12 @@ class BaseDao {
             }
         }
         return Array<Any>()
+    }
+    
+    func remover(at index: Int) throws {
+        var lista = try ler()
+        lista.remove(at: index)
+        try salvar(lista)
     }
     
     private func obterCaminho() -> URL? {

@@ -31,7 +31,7 @@ class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableVi
     
     private func carregarItens() {
         do {
-            itens = try itemDao.Ler()
+            itens = try itemDao.ler()
             reloadData()
         } catch {
             Alerta(controller: self).exibir(message: "Não foi possível ler os itens")
@@ -46,7 +46,7 @@ class RefeicaoViewController: UIViewController, UITableViewDataSource, UITableVi
     func adicionarItem(_ item: Item) {
         do {
             itens.append(item)
-            try itemDao.Salvar(itens)
+            try itemDao.salvar(itens)
             reloadData()
         } catch {
             itens.removeLast()

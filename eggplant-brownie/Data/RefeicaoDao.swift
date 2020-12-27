@@ -11,11 +11,15 @@ class RefeicaoDao {
     
     let dao = BaseDao(fileName: String(describing: Refeicao.self))
     
-    func Salvar(_ refeicoes: [Refeicao]) throws {
-        try dao.Salvar(lista: refeicoes)
+    func salvar(_ refeicoes: [Refeicao]) throws {
+        try dao.salvar(refeicoes)
     }
     
-    func Ler() throws -> [Refeicao] {
-        return try dao.Ler() as! [Refeicao];
+    func ler() throws -> [Refeicao] {
+        return try dao.ler() as! [Refeicao];
+    }
+    
+    func remover(at index: Int) throws {
+        try dao.remover(at: index)
     }
 }
